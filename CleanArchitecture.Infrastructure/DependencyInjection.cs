@@ -2,17 +2,18 @@ using CleanArchitecture.Domain.Interfaces;
 using CleanArchitecture.Infrastructure.Data;
 using CleanArchitecture.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CleanArchitecture.Infrastructure;
 
 public static class DependencyInjection
 {
-    public static IServiceCollection AddInfrastructureDI(this IServiceCollection services)
+    public static IServiceCollection AddInfrastructureDI(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddDbContext<AppDbContext>(options =>
         {
-            options.UseSqlServer("Server=localhost;Database=Customers;User ID=SA;Password=P@ssw0rd;Encrypt=True;Trust Server Certificate=True");
+            options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
         });
 
         services.AddScoped<ICustomerRepository, CustomerRepository>();
