@@ -25,5 +25,16 @@ namespace CleanArchitecture.Api.Controllers
 
             return Ok(result);
         }
+
+        [HttpGet("{customerId}")]
+        public async Task<IActionResult> GetCustomerByIdAsync([FromRoute] Guid customerId)
+        {
+            var result = await sender.Send(new GetCustomerByIdQuery(customerId));
+
+            if (result is null)
+                return NotFound();
+
+            return Ok(result);
+        }
     }
 }

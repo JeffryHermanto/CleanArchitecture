@@ -13,3 +13,8 @@ Content-Type: application/json
 
 GET {{host}}/api/customers
 Accept: application/json
+
+###
+
+GET {{host}}/api/customers/dabb1da3-c132-4df4-9f47-60f8b6b6f170
+Accept: application/json
