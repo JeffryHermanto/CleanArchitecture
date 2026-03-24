@@ -10,3 +10,6 @@ Content-Type: application/json
 }
 
 ###
+
+GET {{host}}/api/customers
+Accept: application/json
