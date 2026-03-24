@@ -1,4 +1,6 @@
 using CleanArchitecture.Application.Commands;
+using CleanArchitecture.Application.Commands.AddCustomer;
+using CleanArchitecture.Application.Commands.UpdateCustomer;
 using CleanArchitecture.Application.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
