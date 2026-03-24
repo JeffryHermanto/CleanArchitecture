@@ -1,4 +1,6 @@
+using CleanArchitecture.Domain.Interfaces;
 using CleanArchitecture.Infrastructure.Data;
+using CleanArchitecture.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -12,6 +14,8 @@ public static class DependencyInjection
         {
             options.UseSqlServer("Server=localhost;Database=Customers;User ID=SA;Password=P@ssw0rd;Encrypt=True;Trust Server Certificate=True");
         });
+
+        services.AddScoped<ICustomerRepository, CustomerRepository>();
 
         return services;
     }
