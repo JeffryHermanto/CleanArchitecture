@@ -1,6 +1,12 @@
-@CleanArchitecture.Api_HostAddress = http://localhost:5240
+@host = http://localhost:5240
 
-GET {{CleanArchitecture.Api_HostAddress}}/weatherforecast/
-Accept: application/json
+POST {{host}}/api/customers
+Content-Type: application/json
+
+{
+  "name": "Jeffry Hermanto",
+  "email": "jeffry@somewhere.com",
+  "phone": "+62 821 7777 1078"
+}
 
 ###
