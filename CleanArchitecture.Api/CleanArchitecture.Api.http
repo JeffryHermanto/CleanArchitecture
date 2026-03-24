@@ -16,12 +16,12 @@ Accept: application/json
 
 ###
 
-GET {{host}}/api/customers/dabb1da3-c132-4df4-9f47-60f8b6b6f170
+GET {{host}}/api/customers/d82b2ee7-2ad6-44fb-97e5-d2476e6b15c4
 Accept: application/json
 
 ###
 
-PUT {{host}}/api/customers/dabb1da3-c132-4df4-9f47-60f8b6b6f170
+PUT {{host}}/api/customers/d82b2ee7-2ad6-44fb-97e5-d2476e6b15c4
 Content-Type: application/json
 
 {
@@ -29,3 +29,8 @@ Content-Type: application/json
   "email": "jeffry.hermanto@somewhere.com",
   "phone": "+62 821 7777 1078"
 }
+
+### 
+
+DELETE {{host}}/api/customers/d82b2ee7-2ad6-44fb-97e5-d2476e6b15c4
+Accept: application/json

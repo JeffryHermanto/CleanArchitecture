@@ -44,5 +44,13 @@ namespace CleanArchitecture.Api.Controllers
 
             return Ok(result);
         }
+
+        [HttpDelete("{customerId}")]
+        public async Task<IActionResult> DeleteCustomerAsync([FromRoute] Guid customerId)
+        {
+            var result = await sender.Send(new DeleteCustomerCommand(customerId));
+
+            return Ok(result);
+        }
     }
 }
