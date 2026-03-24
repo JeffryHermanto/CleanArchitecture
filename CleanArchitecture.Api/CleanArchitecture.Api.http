@@ -18,3 +18,14 @@ Accept: application/json
 
 GET {{host}}/api/customers/dabb1da3-c132-4df4-9f47-60f8b6b6f170
 Accept: application/json
+
+###
+
+PUT {{host}}/api/customers/dabb1da3-c132-4df4-9f47-60f8b6b6f170
+Content-Type: application/json
+
+{
+  "name": "Jeffry Hermanto",
+  "email": "jeffry.hermanto@somewhere.com",
+  "phone": "+62 821 7777 1078"
+}

@@ -36,5 +36,13 @@ namespace CleanArchitecture.Api.Controllers
 
             return Ok(result);
         }
+
+        [HttpPut("{customerId}")]
+        public async Task<IActionResult> UpdateCustomerAsync([FromRoute] Guid customerId, [FromBody] CustomerEntity customer)
+        {
+            var result = await sender.Send(new UpdateCustomerCommand(customerId, customer));
+
+            return Ok(result);
+        }
     }
 }
