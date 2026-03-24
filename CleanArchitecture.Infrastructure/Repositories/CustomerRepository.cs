@@ -17,7 +17,7 @@ public class CustomerRepository(AppDbContext dbContext) : ICustomerRepository
         return await dbContext.Customers.FirstOrDefaultAsync(x => x.Id == id);
     }
 
-    public async Task<CustomerEntity> AddCustomerByIdAsync(CustomerEntity entity)
+    public async Task<CustomerEntity> AddCustomerAsync(CustomerEntity entity)
     {
         entity.Id = Guid.NewGuid();
         dbContext.Customers.Add(entity);

@@ -1,6 +1,5 @@
 using CleanArchitecture.Application.Commands;
 using CleanArchitecture.Application.Queries;
-using CleanArchitecture.Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,9 +10,9 @@ namespace CleanArchitecture.Api.Controllers
     public class CustomerController(ISender sender) : ControllerBase
     {
         [HttpPost]
-        public async Task<IActionResult> AddCustomerAsync([FromBody] CustomerEntity customer)
+        public async Task<IActionResult> AddCustomerAsync([FromBody] AddCustomerRequestDTO addCustomerRequestDTO)
         {
-            var result = await sender.Send(new AddCustomerCommand(customer));
+            var result = await sender.Send(new AddCustomerCommand(addCustomerRequestDTO));
 
             return Ok(result);
         }
@@ -38,9 +37,11 @@ namespace CleanArchitecture.Api.Controllers
         }
 
         [HttpPut("{customerId}")]
-        public async Task<IActionResult> UpdateCustomerAsync([FromRoute] Guid customerId, [FromBody] CustomerEntity customer)
+        public async Task<IActionResult> UpdateCustomerAsync(
+            [FromRoute] Guid customerId,
+            [FromBody] UpdateCustomerRequestDTO updateCustomerRequestDTO)
         {
-            var result = await sender.Send(new UpdateCustomerCommand(customerId, customer));
+            var result = await sender.Send(new UpdateCustomerCommand(customerId, updateCustomerRequestDTO));
 
             return Ok(result);
         }

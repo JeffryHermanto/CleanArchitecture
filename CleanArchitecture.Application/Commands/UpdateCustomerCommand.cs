@@ -4,13 +4,25 @@ using MediatR;
 
 namespace CleanArchitecture.Application.Commands;
 
-public record UpdateCustomerCommand(Guid customerId, CustomerEntity customer) : IRequest<CustomerEntity>;
+public record UpdateCustomerRequestDTO(
+    string Name,
+    string Email,
+    string Phone);
+
+public record UpdateCustomerCommand(Guid customerId, UpdateCustomerRequestDTO UpdateCustomerRequestDTO) : IRequest<CustomerEntity>;
 
 public class UpdateCustomerCommandHandler(ICustomerRepository customerRepository)
     : IRequestHandler<UpdateCustomerCommand, CustomerEntity>
 {
     public async Task<CustomerEntity> Handle(UpdateCustomerCommand request, CancellationToken cancellationToken)
     {
-        return await customerRepository.UpdateCustomerByAsync(request.customerId, request.customer);
+        var customer = new CustomerEntity(
+                 request.UpdateCustomerRequestDTO.Name,
+                 request.UpdateCustomerRequestDTO.Email,
+                 request.UpdateCustomerRequestDTO.Phone
+             );
+
+
+        return await customerRepository.UpdateCustomerByAsync(request.customerId, customer);
     }
 }
