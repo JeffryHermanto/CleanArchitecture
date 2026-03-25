@@ -4,19 +4,19 @@ using CleanArchitecture.Application.Commands.DeleteCustomer;
 using CleanArchitecture.Application.Commands.UpdateCustomer;
 using CleanArchitecture.Application.Queries.GetAllCustomers;
 using CleanArchitecture.Application.Queries.GetCustomerById;
-using MediatR;
+using CleanArchitecture.Application.Utilities.SimpleMediator;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CleanArchitecture.Api.Controllers
 {
     [Route("api/customers")]
     [ApiController]
-    public class CustomerController(ISender sender) : ControllerBase
+    public class CustomerController(IMediator mediator) : ControllerBase
     {
         [HttpPost]
         public async Task<IActionResult> AddCustomerAsync([FromBody] AddCustomerRequestDTO addCustomerRequestDTO)
         {
-            var result = await sender.Send(new AddCustomerCommand(addCustomerRequestDTO));
+            var result = await mediator.Send(new AddCustomerCommand(addCustomerRequestDTO));
 
             return Ok(result);
         }
@@ -24,7 +24,7 @@ namespace CleanArchitecture.Api.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllCustomersAsync()
         {
-            var result = await sender.Send(new GetAllCustomersQuery());
+            var result = await mediator.Send(new GetAllCustomersQuery());
 
             return Ok(result);
         }
@@ -32,7 +32,7 @@ namespace CleanArchitecture.Api.Controllers
         [HttpGet("{customerId}")]
         public async Task<IActionResult> GetCustomerByIdAsync([FromRoute] Guid customerId)
         {
-            var result = await sender.Send(new GetCustomerByIdQuery(customerId));
+            var result = await mediator.Send(new GetCustomerByIdQuery(customerId));
 
             if (result is null)
                 return NotFound();
@@ -45,7 +45,7 @@ namespace CleanArchitecture.Api.Controllers
             [FromRoute] Guid customerId,
             [FromBody] UpdateCustomerRequestDTO updateCustomerRequestDTO)
         {
-            var result = await sender.Send(new UpdateCustomerCommand(customerId, updateCustomerRequestDTO));
+            var result = await mediator.Send(new UpdateCustomerCommand(customerId, updateCustomerRequestDTO));
 
             return Ok(result);
         }
@@ -53,7 +53,7 @@ namespace CleanArchitecture.Api.Controllers
         [HttpDelete("{customerId}")]
         public async Task<IActionResult> DeleteCustomerAsync([FromRoute] Guid customerId)
         {
-            var result = await sender.Send(new DeleteCustomerCommand(customerId));
+            var result = await mediator.Send(new DeleteCustomerCommand(customerId));
 
             return Ok(result);
         }

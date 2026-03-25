@@ -1,6 +1,6 @@
+using CleanArchitecture.Application.Utilities.SimpleMediator;
 using CleanArchitecture.Domain.Entities;
 using CleanArchitecture.Domain.Interfaces;
-using MediatR;
 using Microsoft.Extensions.Logging;
 
 namespace CleanArchitecture.Application.Commands.AddCustomer;
@@ -10,9 +10,7 @@ public class AddCustomerCommandHandler(
     ILogger<AddCustomerCommandHandler> logger)
     : IRequestHandler<AddCustomerCommand, CustomerEntity>
 {
-    public async Task<CustomerEntity> Handle(
-        AddCustomerCommand request,
-        CancellationToken cancellationToken)
+    public async Task<CustomerEntity> Handle(AddCustomerCommand request)
     {
         logger.LogInformation(
             "Creating new customer with Email {Email}",

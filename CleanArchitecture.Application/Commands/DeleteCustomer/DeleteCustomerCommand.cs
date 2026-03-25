@@ -1,4 +1,5 @@
-using MediatR;
+
+using CleanArchitecture.Application.Utilities.SimpleMediator;
 
 namespace CleanArchitecture.Application.Commands.DeleteCustomer;
 

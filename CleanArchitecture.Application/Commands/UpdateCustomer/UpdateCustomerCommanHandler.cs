@@ -1,6 +1,6 @@
+using CleanArchitecture.Application.Utilities.SimpleMediator;
 using CleanArchitecture.Domain.Entities;
 using CleanArchitecture.Domain.Interfaces;
-using MediatR;
 using Microsoft.Extensions.Logging;
 
 namespace CleanArchitecture.Application.Commands.UpdateCustomer;
@@ -10,9 +10,7 @@ public class UpdateCustomerCommandHandler(
     ILogger<UpdateCustomerCommandHandler> logger)
     : IRequestHandler<UpdateCustomerCommand, CustomerEntity>
 {
-    public async Task<CustomerEntity> Handle(
-        UpdateCustomerCommand request,
-        CancellationToken cancellationToken)
+    public async Task<CustomerEntity> Handle(UpdateCustomerCommand request)
     {
         logger.LogInformation(
             "Updating customer with ID {CustomerId}",

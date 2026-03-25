@@ -1,6 +1,6 @@
+using CleanArchitecture.Application.Utilities.SimpleMediator;
 using CleanArchitecture.Domain.Entities;
 using CleanArchitecture.Domain.Interfaces;
-using MediatR;
 using Microsoft.Extensions.Logging;
 
 namespace CleanArchitecture.Application.Queries.GetAllCustomers;
@@ -10,9 +10,7 @@ public class GetAllCustomersQueryHandler(
     ILogger<GetAllCustomersQueryHandler> logger)
     : IRequestHandler<GetAllCustomersQuery, IEnumerable<CustomerEntity>>
 {
-    public async Task<IEnumerable<CustomerEntity>> Handle(
-        GetAllCustomersQuery request,
-        CancellationToken cancellationToken)
+    public async Task<IEnumerable<CustomerEntity>> Handle(GetAllCustomersQuery request)
     {
         logger.LogInformation("Fetching all customers");
 

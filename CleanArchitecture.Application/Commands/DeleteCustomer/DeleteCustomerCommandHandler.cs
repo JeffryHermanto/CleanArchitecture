@@ -1,5 +1,5 @@
+using CleanArchitecture.Application.Utilities.SimpleMediator;
 using CleanArchitecture.Domain.Interfaces;
-using MediatR;
 using Microsoft.Extensions.Logging;
 
 namespace CleanArchitecture.Application.Commands.DeleteCustomer;
@@ -9,9 +9,7 @@ public class DeleteCustomerCommandHandler(
     ILogger<DeleteCustomerCommandHandler> logger)
     : IRequestHandler<DeleteCustomerCommand, bool>
 {
-    public async Task<bool> Handle(
-        DeleteCustomerCommand request,
-        CancellationToken cancellationToken)
+    public async Task<bool> Handle(DeleteCustomerCommand request)
     {
         logger.LogInformation(
             "Deleting customer with ID {CustomerId}",

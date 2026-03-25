@@ -1,6 +1,6 @@
 using CleanArchitecture.Application.Commands.UpdateCustomer;
+using CleanArchitecture.Application.Utilities.SimpleMediator;
 using CleanArchitecture.Domain.Entities;
-using MediatR;
 
 namespace CleanArchitecture.Application.Commands;
 
