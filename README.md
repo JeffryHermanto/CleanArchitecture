@@ -31,22 +31,27 @@ CleanArchitecture
 │   └── Middleware/
 |
 ├── CleanArchitecture.Application
+│   ├── DTOs/
 │   ├── Features/
 │   │   ├── FeatureOne/
 │   │   ├── FeatureTwo/
 │   │   └── FeatureThree/
-│   ├── DTOs/
-│   └── Interfaces/
+│   └── Utilities/
 |
 ├── CleanArchitecture.Domain
 │   ├── Entities/
-│   ├── ValueObjects/
-│   └── Interfaces/
+│   ├── Interfaces/
+│   ├── Options/
+│   └── ValueObjects/
 |
 └── CleanArchitecture.Infrastructure
+    ├── External/
     ├── Persistence/
-    ├── Services/
-    └── External/
+    |    ├── Migrations/
+    │    |── Repositories/
+    │    |── AppDbContext.cs
+    |    └── AppDbContextFactory.cs
+    └── Services/
 ```
 
 ### 1. API Layer (`*.Api`)
@@ -200,6 +205,52 @@ Add-Migration DBInit
 dotnet ef migrations add DbInit \
  --project CleanArchitecture.Infrastructure \
  --startup-project CleanArchitecture.Api
+```
+
+### `AppDbContext.cs` example
+
+```C#
+using CleanArchitecture.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
+
+namespace CleanArchitecture.Infrastructure.Persistence;
+
+public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
+{
+    public DbSet<UserEntity> Users { get; set; }
+}
+```
+
+### `AppDbContextFactory.cs` example
+
+```C#
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
+using Microsoft.Extensions.Configuration;
+
+namespace CleanArchitecture.Infrastructure.Persistence;
+
+public class AppDbContextFactory
+    : IDesignTimeDbContextFactory<AppDbContext>
+{
+    public AppDbContext CreateDbContext(string[] args)
+    {
+        var basePath = Directory.GetCurrentDirectory();
+
+        var configuration = new ConfigurationBuilder()
+            .SetBasePath(basePath)
+            .AddJsonFile("appsettings.json", optional: false)
+            .Build();
+
+        var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
+
+        optionsBuilder.UseSqlServer(
+            configuration.GetConnectionString("DefaultConnection")
+        );
+
+        return new AppDbContext(optionsBuilder.Options);
+    }
+}
 ```
 
 ## Notes

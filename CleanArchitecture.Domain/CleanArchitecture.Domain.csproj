@@ -15,6 +15,7 @@
     <Folder Include="Entities/" />
     <Folder Include="Interfaces/" />
     <Folder Include="Options/" />
+    <Folder Include="ValueObjects/" />
   </ItemGroup>
 
 </Project>

@@ -7,11 +7,11 @@ using CleanArchitecture.Application.Queries.GetCustomerById;
 using CleanArchitecture.Application.Utilities.SimpleMediator;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CleanArchitecture.Api.Controllers
+namespace CleanArchitecture.Api.Endpoints.Customers
 {
     [Route("api/customers")]
     [ApiController]
-    public class CustomerController(IMediator mediator) : ControllerBase
+    public class CustomerEndpoints(IMediator mediator) : ControllerBase
     {
         [HttpPost]
         public async Task<IActionResult> AddCustomerAsync([FromBody] AddCustomerRequestDTO addCustomerRequestDTO)

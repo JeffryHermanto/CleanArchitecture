@@ -1,6 +1,6 @@
 using CleanArchitecture.Domain.Interfaces;
 using CleanArchitecture.Domain.Options;
-using CleanArchitecture.Infrastructure.Data;
+using CleanArchitecture.Infrastructure.Persistence;
 using CleanArchitecture.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;

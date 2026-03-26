@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace CleanArchitecture.Infrastructure.Migrations
+namespace CleanArchitecture.Infrastructure.Persistence.Migrations
 {
     /// <inheritdoc />
     public partial class DbInit : Migration
@@ -12,7 +12,7 @@ namespace CleanArchitecture.Infrastructure.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "customers",
+                name: "Customers",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -22,7 +22,7 @@ namespace CleanArchitecture.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_customers", x => x.Id);
+                    table.PrimaryKey("PK_Customers", x => x.Id);
                 });
         }
 
@@ -30,7 +30,7 @@ namespace CleanArchitecture.Infrastructure.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "customers");
+                name: "Customers");
         }
     }
 }
