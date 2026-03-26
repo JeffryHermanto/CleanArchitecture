@@ -1,7 +1,6 @@
 namespace CleanArchitecture.Application.DTOs.Customer
-
 {
-    public record AddCustomerRequestDTO(
+    public record UpdateCustomerRequestDTO(
         string Name,
         string Email,
         string Phone);

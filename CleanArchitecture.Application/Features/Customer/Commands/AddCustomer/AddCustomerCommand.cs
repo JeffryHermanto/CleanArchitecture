@@ -1,4 +1,4 @@
-using CleanArchitecture.Application.Commands.AddCustomer;
+using CleanArchitecture.Application.DTOs.Customer;
 using CleanArchitecture.Application.Utilities.SimpleMediator;
 using CleanArchitecture.Domain.Entities;
 

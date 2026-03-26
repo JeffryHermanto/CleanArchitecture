@@ -1,7 +1,6 @@
 using CleanArchitecture.Application.Commands;
-using CleanArchitecture.Application.Commands.AddCustomer;
 using CleanArchitecture.Application.Commands.DeleteCustomer;
-using CleanArchitecture.Application.Commands.UpdateCustomer;
+using CleanArchitecture.Application.DTOs.Customer;
 using CleanArchitecture.Application.Queries.GetAllCustomers;
 using CleanArchitecture.Application.Queries.GetCustomerById;
 using CleanArchitecture.Application.Utilities.SimpleMediator;
@@ -29,7 +28,7 @@ namespace CleanArchitecture.Api.Endpoints.Customers
             return Ok(result);
         }
 
-        [HttpGet("{customerId}")]
+        [HttpGet("{customerId:guid}")]
         public async Task<IActionResult> GetCustomerByIdAsync([FromRoute] Guid customerId)
         {
             var result = await mediator.Send(new GetCustomerByIdQuery(customerId));
@@ -40,7 +39,7 @@ namespace CleanArchitecture.Api.Endpoints.Customers
             return Ok(result);
         }
 
-        [HttpPut("{customerId}")]
+        [HttpPut("{customerId:guid}")]
         public async Task<IActionResult> UpdateCustomerAsync(
             [FromRoute] Guid customerId,
             [FromBody] UpdateCustomerRequestDTO updateCustomerRequestDTO)
@@ -50,7 +49,7 @@ namespace CleanArchitecture.Api.Endpoints.Customers
             return Ok(result);
         }
 
-        [HttpDelete("{customerId}")]
+        [HttpDelete("{customerId:guid}")]
         public async Task<IActionResult> DeleteCustomerAsync([FromRoute] Guid customerId)
         {
             var result = await mediator.Send(new DeleteCustomerCommand(customerId));
